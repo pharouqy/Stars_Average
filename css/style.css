@@ -16,7 +16,6 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
 }
 
 section > div,
@@ -34,4 +33,8 @@ svg:focus ~ svg {
   transform: scale(1.5);
   fill: rgb(255, 234, 0);
   stroke: rgb(255, 234, 0);
+}
+
+h2 {
+  text-align: center;
 }

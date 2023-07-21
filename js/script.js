@@ -38,6 +38,8 @@ setupStarClickEvents(starGroups[3], ratings[3]);
 function calculateRating() {
   let totalSum = 0;
   let totalCount = 0;
+  const expectedCount = starGroups.length;
+
   // Calculer la somme des notes et le nombre total de notes attribuées
   for (let i = 0; i < ratings.length; i++) {
     for (let j = 0; j < ratings[i].length; j++) {
@@ -46,14 +48,16 @@ function calculateRating() {
     }
   }
 
-  if (totalCount === 0) {
-    container.textContent = "Moyenne : N/A"; // Aucune note attribuée
-  } else {
+  if (totalCount === expectedCount) {
     const average = totalSum / totalCount;
     stars(average);
     return average;
+  } else {
+    // Not all stars have been selected, do not display the average
+    return null;
   }
 }
+
 
 function stars(average) {
   const container = document.getElementById("result");
@@ -95,7 +99,7 @@ function stars(average) {
   container.appendChild(starsContainer);
 
   // Créer un élément pour afficher le résultat de la moyenne
-  const averageText = document.createElement("div");
+  const averageText = document.createElement("h2");
   averageText.textContent = `Moyenne : ${average.toFixed(2)}`;
 
   // Ajouter averageText au container
